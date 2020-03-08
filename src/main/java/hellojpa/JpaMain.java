@@ -6,21 +6,13 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class JpaMain {
-
     public static void main(String[] args){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello"); // EntityManagerFactory는 한번만 만든다.
-
         EntityManager em = emf.createEntityManager(); // 트랜잭션 단위에 행위를 할때는 EntityManager를 만들어야 한다. JPA에서 모든 작업은 트랜잭션안에서 이루어져야 한다.
-
         EntityTransaction tx = em.getTransaction(); // 트랜잭션을 받아온다.
-
         tx.begin(); // 트랜잭션 시작
 
         try{
-            Member findMember = em.find(Member.class, 1L);
-            findMember.setName("name change");
-
-
             tx.commit(); // 작업 끝났으니 커밋
         }catch(Exception e){
             tx.rollback(); // 에러 발생하면 롤백
@@ -30,7 +22,6 @@ public class JpaMain {
 
         emf.close();
     }
-
 }
 
 
