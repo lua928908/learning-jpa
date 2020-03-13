@@ -2,6 +2,8 @@ package hellojpa.jpabook.jpashop.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ORDERS") // DB자체에서 예약어가 oder인 경우가 있어 생성이 안되는 경우가 있다. 그래서 orders로 변경 자바스크립트에서 변수명을 const로 만들 수 없는것과 비슷한 이유
@@ -9,11 +11,23 @@ public class Order {
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;
-    @Column(name = "MEMBER_ID")
-    private Long memberId;
+
+    @ManyToOne
+    @JoinColumn(name= " MEMBER_ID")
+    private Member member;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
+
     private LocalDateTime orderDate;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this); // 받은 orderItem에 this를 넣음
+    }
 
     public Long getId() {
         return id;
@@ -23,13 +37,9 @@ public class Order {
         this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
+    public Member getMember() { return member; }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
+    public void setMember(Member member) { this.member = member; }
 
     public LocalDateTime getOrderDate() {
         return orderDate;
