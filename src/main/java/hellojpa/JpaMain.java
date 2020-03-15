@@ -18,7 +18,7 @@ public class JpaMain {
         try{
 
             Order order = new Order();
-            order.addOrderItem(new OrderItem);
+            order.addOrderItem(new OrderItem());
 
             tx.commit(); // 작업 끝났으니 커밋
         }catch(Exception e){
