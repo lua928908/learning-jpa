@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS") // DB자체에서 예약어가 oder인 경우가 있어 생성이 안되는 경우가 있다. 그래서 orders로 변경 자바스크립트에서 변수명을 const로 만들 수 없는것과 비슷한 이유
-public class Order {
+public class Order extends BaseEntity {
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;

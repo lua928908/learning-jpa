@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity {
     @Id @GeneratedValue() // 디폴트 strategy = GeneratedType.AUTO
     @Column(name = "MEMBER_ID")
     private Long id;

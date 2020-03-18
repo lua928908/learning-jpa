@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED) // 상속관계 전략은 JOINED
+public abstract class Item extends BaseEntity {
     @Id @GeneratedValue
     @Column(name = "ITEM_ID") // DB 컬럼 이름이 ITEM_ID
     private Long id;

@@ -2,6 +2,7 @@ package hellojpa;
 
 import hellojpa.jpabook.jpashop.domain.Order;
 import hellojpa.jpabook.jpashop.domain.OrderItem;
+import hellojpa.jpabook.jpashop.domain.inheritstant.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,8 +18,11 @@ public class JpaMain {
 
         try{
 
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+
+            em.persist(book);
 
             tx.commit(); // 작업 끝났으니 커밋
         }catch(Exception e){
