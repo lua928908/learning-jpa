@@ -1,5 +1,7 @@
 package hellojpa.jpabook.jpashop.domain;
 
+import net.bytebuddy.dynamic.TypeResolutionStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Category extends BaseEntity {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent; // 부모 카테고리
 
